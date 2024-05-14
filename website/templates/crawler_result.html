@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crawler Results</title>
+    <link rel="stylesheet" href="static/crawler.css">
+</head>
+<body>
+    <h1>Crawled Data Results</h1>
+    <table>
+        <thead>
+            <tr>
+                {% for header in headers %}
+                    <th>{{ header }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+                <tr>
+                    {% for header in headers %}
+                        {% if header == 'Image' %}
+                            <td><img src="{{ row[header] }}" alt="Product Image"></td>
+                        {% else %}
+                            <td>{{ row[header] }}</td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
