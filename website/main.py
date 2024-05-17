@@ -10,11 +10,12 @@ def index():
 @app.route('/result', methods=['POST'])
 def result():
     base_url = request.form['base_url'] + '&page={}'
-
+    # page_num = request.form['page_number']
     scraped_data = []
     result_header = []
 
     def fetch_data():
+        
         nonlocal scraped_data
         nonlocal result_header
         try:
@@ -26,7 +27,7 @@ def result():
 
     t = threading.Thread(target=fetch_data)
     t.start()
-    t.join()  # Wait for the thread to finish
+    t.join() 
 
     return render_template('crawler_result.html', data=scraped_data, headers=result_header)
 
